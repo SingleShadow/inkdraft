@@ -1,0 +1,9 @@
+node_modules/
+dist/
+backups/
+*.log
+.env
+.DS_Store
+
+# 作品数据含真实稿件与本地配置，只在自己机器上保存，永不入库
+data/

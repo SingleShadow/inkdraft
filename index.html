@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>墨稿 InkDraft</title>
+  <script>
+    /**
+     * 屏蔽一条与应用无关的浏览器报错：
+     *   Uncaught TypeError: Cannot redefine property: ethereum
+     * 来源是浏览器钱包插件（MetaMask / OKX / imToken 等）向页面注入 window.ethereum，
+     * 多个插件互相抢注时由插件自己的脚本抛出，与应用代码无关
+     * （本应用构建产物与依赖中均不含 ethereum 相关代码，可自行 grep 验证）。
+     * 但它会在控制台刷成红色，掩盖真正的应用报错，所以只过滤这一条。
+     */
+    (function () {
+      var NOISE = /redefine property:\s*ethereum/i;
+      var warned = false;
+      window.addEventListener('error', function (e) {
+        if (e && typeof e.message === 'string' && NOISE.test(e.message)) {
+          if (!warned) {
+            warned = true;
+            console.info('[墨稿] 已忽略浏览器钱包插件的 ethereum 注入报错（与本应用无关）');
+          }
+          e.preventDefault();
+        }
+      }, true);
+    })();
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

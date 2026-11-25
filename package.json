@@ -1,0 +1,29 @@
+{
+  "name": "inkdraft",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "墨稿 InkDraft — 个人自用的网文写作工具（本地优先）",
+  "scripts": {
+    "dev:web": "vite",
+    "dev:api": "node server/index.js",
+    "dev": "node scripts/dev.js",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "backup": "node scripts/backup.js",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "dependencies": {
+    "@tiptap/extension-placeholder": "^2.11.5",
+    "@tiptap/pm": "^2.11.5",
+    "@tiptap/react": "^2.11.5",
+    "@tiptap/starter-kit": "^2.11.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "source-map": "^0.8.0",
+    "vite": "^5.4.11"
+  }
+}
